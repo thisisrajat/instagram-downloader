@@ -45,7 +45,6 @@ def download(url, name, username):
   urllib.urlretrieve(url, '{}/{}.png'.format(username, name))
 
 
-
 # Load settings
 def settingsLoad(user):
 
@@ -112,8 +111,6 @@ def batchDownload():
   print "Done. Exiting Now."
 
 
-
-
 # Save all the urls to a file
 def saveToFile():
   pointer = open('{}-urls.txt'.format(username), 'w')
@@ -121,7 +118,6 @@ def saveToFile():
     pointer.write( str(url) )
     pointer.write( str('\n') )
   exit(0)
-
 
 
 # Print Help
@@ -134,8 +130,6 @@ def printHelp():
   exit(0)
 
 
-
-
 # Download all the images
 def all(saveOnly):
 
@@ -144,8 +138,6 @@ def all(saveOnly):
     saveToFile()
   else:
     batchDownload()
-
-
 
 
 # Download only the recent ones
@@ -158,7 +150,6 @@ def recent(saveOnly):
     batchDownload()
 
 
-
 # Choose which function to call according to arguments
 def choose(username, mode, saveOnly):
   settingsLoad(username)
@@ -169,7 +160,6 @@ def choose(username, mode, saveOnly):
     recent(saveOnly)
   else:
     printHelp()
-
 
 
 # Standard boilerplate to call appropriate functions
