@@ -5,7 +5,7 @@ Use it to download images of a user.
 Usage 
 
 ``` 
-  python insta.py USERNAME
+  $ python insta.py USERNAME
 
 ```
 
