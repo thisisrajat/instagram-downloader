@@ -113,6 +113,7 @@ def batchDownload():
 
 # Save all the urls to a file
 def saveToFile():
+  print "Saving to file..."
   pointer = open('{}-urls.txt'.format(username), 'w')
   for url in image_urls:
     pointer.write( str(url) )
