@@ -2,25 +2,31 @@
 
 Use it to download images of a user.
 
-Usage 
+
+### How to use it
+
+To get started with little to no configuration, run the script like this 
 
 ``` 
-  $ python downloader.py USERNAME
-
+  $ python downloader.py username
 ```
 
-replace USERNAME with the persons username/handle. Script will take care of the rest.
-It will download images in a separate folder named by username in the `/` directory.
+replace username with the persons username/handle. Script will assume you want to download all the images of the following user.
 
+Alternatively to fine tune what you want to download use the following command
+
+```
+  $ python downloader.py username [--save-only] [[all] [recent]]
+```
+
+* `username all` - will download all the images
+* `username recent` - will download _only_ recent images
+* `username --save-only [...]` - will _only_ save and _not_ download images
+
+To change default settings open __settings.conf__ and choose as you like.
 
 ### TODO
 1. Improve downloading module. Multithreading can be used.
-1. User preferable resolution.
-1. let choose the download format => `jpg` or `png`
-1. let download only the popular images
-1. let download all images
-1. let only download the new ones like top 20 or so
-1. save the urls to a file to batch download with likes of IDM
-1. Eventually make this downloader a class, since handling this all will be cumbersome soon
-1. Let people download tags
-
+1. Save the urls to a file to batch download with likes of IDM
+1. Let people download tags 
+1. Do something about captions too
