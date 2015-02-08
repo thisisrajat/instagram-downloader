@@ -101,7 +101,7 @@ def fetchUrls(onlyOneRequest):
 
 # Download images
 def batchDownload():
-  subprocess.Popen('mkdir {}'.format(username))
+  subprocess.Popen('mkdir {}'.format(username), shell=True)
 
   print "Downloading images now..."
 
