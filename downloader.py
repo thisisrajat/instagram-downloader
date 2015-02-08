@@ -30,7 +30,11 @@ def getID():
   data = getJson(url)
   
   if data['meta']['code'] == 200:
-    print "Found => %s" % (format(data['data'][0]['full_name']).encode('utf-8'))
+    try:
+      print "Found => %s" % (format(data['data'][0]['full_name']).encode('utf-8'))
+    except:
+      print "Username error."
+      exit(0)
 
   else :
     print "Username not found"
