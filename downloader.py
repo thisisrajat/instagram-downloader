@@ -94,7 +94,7 @@ def fetchUrls(onlyOneRequest):
         break
 
     elif data['meta']['code'] == 400:
-      print "User is private. Can't Downlaod"
+      print "User is private. Can't Download"
       exit(0)
 
 
@@ -127,11 +127,12 @@ def saveToFile():
 
 # Print Help
 def printHelp():
-  print 'usage: python downloader.py [--url-save] [[all] [recent] [popular]]'
+  print 'usage: python downloader.py [--save-only] [[all] [recent] [popular]] [username]'
   print 'all : Download all of the images'
   print 'recent : Download only the recent images'
   print 'popular : Download only the popular images'
-  print '--url-save : Only save the image urls, and not download any of them'
+  print '--save-only : Only save the image urls, and not download any of them'
+  print 'username : User\'s username on instagram. Also referrerd to as handlename.'
   exit(0)
 
 
