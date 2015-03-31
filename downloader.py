@@ -127,7 +127,7 @@ def saveToFile():
 
 # Print Help
 def printHelp():
-  print 'usage: python downloader.py [--save-only] [[all] [recent] [popular]] [username]'
+  print 'usage: python downloader.py [username] [--save-only] [[all] [recent]]'
   print 'all : Download all of the images'
   print 'recent : Download only the recent images'
   print 'popular : Download only the popular images'

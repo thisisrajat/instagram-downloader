@@ -16,7 +16,7 @@ replace username with the persons username/handle. Script will assume you want t
 Alternatively to fine tune what you want to download use the following command
 
 ```
-  $ python downloader.py username [--save-only] [[all] [recent]]
+  $ python downloader.py [username] [--save-only] [[all] [recent]]
 ```
 
 * `username all` - will download all the images
