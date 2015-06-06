@@ -1,19 +1,19 @@
 from sys import argv, exit
 import urllib, json
 import subprocess
-
-
+import os
 
 # Global Declaration
 
 ACCESS_TOKEN = r'2912979.87fdd31.0949d22f4a714349ae84643c5af165ef'
 image_urls = []
+image_names = []
 resolution = ""
 file_format = ""
 uid = ""
 username = ""
 
-# Return JSON dict
+# Return JSON dict by taking URL 
 def getJson( url ):
   return json.loads( urllib.urlopen( url ).read() )
 
@@ -44,21 +44,33 @@ def getID():
 
 
 
-# Download URL into username/{name} folder
+# Download URL into {username}/{name}.png folder
 def download(url, name, username):
-  urllib.urlretrieve(url, '{}/{}.png'.format(username, name))
+  if os.path.exists("{}/{}.{}".format(username, name, file_format)) == True:
+    print "Wut"
+    return None
+  else:
+    urllib.urlretrieve(url, '{}/{}.{}'.format(username, name, file_format))
 
 
 # Load settings
 def settingsLoad(user):
 
   global resolution, file_format, uid, username
-  settings = json.loads( open('settings.conf').read() )
-  file_format = settings['file_format']
-  resolution = str(settings['resolution'])
+  
+  file_format = ".png"
+  resolution = "standard_resolution"
+
+  if os.path.exists("settings.conf") == False:
+    print "No Settings File in the current working directory"
+    print "Using PNG format and standard resolution for images"
+  else:
+    settings = json.loads( open('settings.conf').read() )
+    file_format = settings['file_format']
+    resolution = str(settings['resolution'])
+  
   username = user
   uid = getID()
-
 
 # Fetch Urls
 def fetchUrls(onlyOneRequest):
@@ -66,7 +78,6 @@ def fetchUrls(onlyOneRequest):
   global resolution, uid, ACCESS_TOKEN
 
   url = "https://api.instagram.com/v1/users/{}/media/recent/?access_token={}".format(uid, ACCESS_TOKEN)
-    
   print "Fetching images url"
 
   while(True):
@@ -82,6 +93,7 @@ def fetchUrls(onlyOneRequest):
       
       while(i < MAX):
         image_urls.append( data['data'][i]['images']['{}'.format(resolution)]['url'] )
+        image_names.append( data['data'][i]['created_time'])
         i += 1
       
 
@@ -107,10 +119,10 @@ def batchDownload():
 
   i = 0;
 
-  for image in image_urls:
+  while i < len(image_names):
+    download(image_urls[i], image_names[i], username)
     i += 1
-    download(image, i, username)
-    print "."
+    print "Downloaded #" + str(i) + "."
 
   print "Done. Exiting Now."
 
